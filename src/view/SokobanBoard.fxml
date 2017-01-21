@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import view.GUIDisplayer?>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanGUIController">
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <children>
+        <BorderPane prefHeight="459.0" prefWidth="460.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Game">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#openFile" text="Load"/>
+                                <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save"/>
+                                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <center>
+                <GUIDisplayer fx:id="displayer"
+                              boxImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\crate.jpg"
+                              height="400.0"
+                              playerImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\player.jpg"
+                              targetImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\target.jpg"
+                              tileImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\tile.jpg"
+                              wallImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\wall.jpg"
+                              width="400.0"
+                              BorderPane.alignment="CENTER"/>
+            </center>
+        </BorderPane>
+    </children>
+</GridPane>
