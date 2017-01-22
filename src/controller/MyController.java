@@ -48,6 +48,7 @@ public class MyController implements Controller {
         commands.put("save", new SaveCommand(this.model));
         commands.put("move", new MoveCommand(this.model));
         commands.put("exit", new ExitCommand(this));
+        commands.put("win",new WinCommand(this.server));
         commands.put("display", new DisplayCommand(this.model,new CLIDisplayer(this.server)));
     }
 
@@ -60,6 +61,7 @@ public class MyController implements Controller {
         commands.put("save", new SaveCommand(this.model));
         commands.put("move", new MoveCommand(this.model));
         commands.put("exit", new ExitCommand(this));
+        commands.put("win",new WinCommand(this.view));
         commands.put("display", new DisplayCommand(this.model,view.getDisplayer()));
     }
 
@@ -169,5 +171,6 @@ public class MyController implements Controller {
 
         return commandList;
     }
+
 }
 

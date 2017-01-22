@@ -1,42 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import view.GUIDisplayer?>
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanGUIController">
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanGUIController">
     <columnConstraints>
-        <ColumnConstraints/>
+        <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
+        <RowConstraints />
     </rowConstraints>
     <children>
-        <BorderPane prefHeight="459.0" prefWidth="460.0">
-            <top>
-                <MenuBar BorderPane.alignment="CENTER">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="Game">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#openFile" text="Load"/>
-                                <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save"/>
-                                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit"/>
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-            </top>
+        <BorderPane prefHeight="459.0" prefWidth="613.0">
             <center>
-                <GUIDisplayer fx:id="displayer"
-                              boxImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\crate.jpg"
-                              height="400.0"
-                              playerImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\player.jpg"
-                              targetImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\target.jpg"
-                              tileImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\tile.jpg"
-                              wallImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\wall.jpg"
-                              width="400.0"
-                              BorderPane.alignment="CENTER"/>
+                <GUIDisplayer fx:id="displayer" boxImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\crate.jpg" height="360.0" playerImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\player.jpg" targetImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\target.jpg" tileImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\tile.jpg" wallImg="C:\Users\leonk\Documents\JavaCourse\Sokoban_GUI\resources\images\wall.jpg" width="400.0" BorderPane.alignment="CENTER" />
             </center>
+         <left>
+            <VBox alignment="CENTER" prefHeight="459.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#openFile" prefHeight="25.0" prefWidth="106.0" text="Load">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#saveFile" prefHeight="25.0" prefWidth="101.0" text="Save">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="106.0" text="Exit">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Solve">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                <Button mnemonicParsing="false" onAction="#playPause" prefHeight="25.0" prefWidth="128.0" text="Mute / Play music" />
+               </children>
+            </VBox>
+         </left>
+         <bottom>
+            <Label fx:id="steps" prefHeight="17.0" prefWidth="80.0" BorderPane.alignment="CENTER_RIGHT">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
         </BorderPane>
     </children>
 </GridPane>

@@ -15,6 +15,15 @@ public class Level implements Serializable {
     protected ArrayList<Item> boxes;               // points to the boxes
     protected int xLenght;                         // level dimensions
     protected int yWidth;
+    protected int stepCounter=0;
+
+    public int getStepCounter() {
+        return stepCounter;
+    }
+
+    public void setStepCounter(int stepCounter) {
+        this.stepCounter = stepCounter;
+    }
 
     public ArrayList<Item> getBoxes() {
         return boxes;
@@ -101,6 +110,7 @@ public class Level implements Serializable {
                 .setContains(levelMap.get(from.getX()).get(from.getY()).getContains());
         // setting the from tile to contain nothing
         levelMap.get(from.getX()).get(from.getY()).freeTile();
+        stepCounter++;
     }
 
     public boolean isWon() {

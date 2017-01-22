@@ -24,6 +24,7 @@ public class GUIDisplayer extends Canvas implements Displayer {
     private StringProperty playerImg;
 
 
+
     public GUIDisplayer() {
         wallImg=new SimpleStringProperty();
         boxImg=new SimpleStringProperty();
@@ -35,6 +36,7 @@ public class GUIDisplayer extends Canvas implements Displayer {
     @Override
     public void display() throws IOException {
         if (model.getCurrentLvl() != null) {
+
             double W = getWidth();
             double H = getHeight();
 
@@ -49,6 +51,12 @@ public class GUIDisplayer extends Canvas implements Displayer {
 
             GraphicsContext gc = getGraphicsContext2D();
             gc.clearRect(0, 0, W, H);
+
+            for (int i = 0; i < model.getCurrentLvl().getxLenght(); i++)
+                for (int j = 0; j < model.getCurrentLvl().getyWidth(); j++) {
+                    gc.drawImage(tile, j * w, i * h, w, h);
+                }
+
 
             for (ArrayList<Tile> list : model.getCurrentLvl().getLevelMap()) {
                 for (Tile t : list) {

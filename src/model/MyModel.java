@@ -21,9 +21,9 @@ public class MyModel extends Observable implements Model {
 
     @Override
     public void setCurrentLvl(Level level) {
-        this.currentLevel=level;
+        this.currentLevel = level;
         try {
-            this.policy=new MySokobanPolicy(level);
+            this.policy = new MySokobanPolicy(level);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,14 +31,18 @@ public class MyModel extends Observable implements Model {
         notifyObservers("display");
     }
 
-    public void move(Direction direction){
-        policy.checkPolicy(direction);
-        if (currentLevel.isWon()){
+    public void move(Direction direction) {
+        if (!currentLevel.isWon()) {
+            policy.checkPolicy(direction);
             setChanged();
-            notifyObservers("won");
+            notifyObservers("display");
+
+            if (currentLevel.isWon()) {
+                setChanged();
+                notifyObservers("win " + currentLevel.getStepCounter());
+            }
         }
-        setChanged();
-        notifyObservers("display");
+
     }
 
     @Override
@@ -48,6 +52,6 @@ public class MyModel extends Observable implements Model {
 
     @Override
     public void setPolicy(Policy policy) {
-        this.policy=policy;
+        this.policy = policy;
     }
 }

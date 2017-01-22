@@ -7,10 +7,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.MyModel;
 import view.SokobanGUIController;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Run extends Application {
@@ -30,8 +33,9 @@ public class Run extends Application {
         controller.start();
 
         primaryStage.setTitle("Sokoban");
-        primaryStage.setScene(new Scene(root, 450, 450));
+        primaryStage.setScene(new Scene(root, 613, 462));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(event -> view.exit());
     }
 
 
