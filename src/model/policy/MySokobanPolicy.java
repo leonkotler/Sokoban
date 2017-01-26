@@ -131,12 +131,12 @@ public class MySokobanPolicy implements Policy {
                 else
                     return level.getLevelMap().get(level.getPlayerLocation().getX() - offset).get(level.getPlayerLocation().getY());
             case DOWN:
-                if (level.getPlayerLocation().getX() + offset > level.getxLenght() - 1 || level.getPlayerLocation().getY() > level.getLevelMap().get(level.getPlayerLocation().getX() + offset).size()-1 )
+                if (level.getPlayerLocation().getX() + offset > level.getX() - 1 || level.getPlayerLocation().getY() > level.getLevelMap().get(level.getPlayerLocation().getX() + offset).size()-1 )
                     return null;
                 else
                     return level.getLevelMap().get(level.getPlayerLocation().getX() + offset).get(level.getPlayerLocation().getY());
             case RIGHT:
-                if (level.getPlayerLocation().getY() + offset > level.getyWidth() - 1)
+                if (level.getPlayerLocation().getY() + offset > level.getY() - 1)
                     return null;
                 else
                     return level.getLevelMap().get(level.getPlayerLocation().getX()).get(level.getPlayerLocation().getY() + offset);

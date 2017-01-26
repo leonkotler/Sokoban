@@ -8,13 +8,12 @@ import java.util.ArrayList;
 
 public class Level implements Serializable {
 
-
     protected ArrayList<ArrayList<Tile>> levelMap; // 2D ArrayList that contains tiles
     protected Location playerLocation;             // holds the current player location
     protected ArrayList<Tile> targets;             // points to the targets
     protected ArrayList<Item> boxes;               // points to the boxes
-    protected int xLenght;                         // level dimensions
-    protected int yWidth;
+    protected int x;                         // level dimensions
+    protected int y;
     protected int stepCounter=0;
 
     public int getStepCounter() {
@@ -33,20 +32,20 @@ public class Level implements Serializable {
         this.boxes = boxes;
     }
 
-    public int getxLenght() {
-        return xLenght;
+    public int getX() {
+        return x;
     }
 
-    public void setxLenght(int xLenght) {
-        this.xLenght = xLenght;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public int getyWidth() {
-        return yWidth;
+    public int getY() {
+        return y;
     }
 
-    public void setyWidth(int yWidth) {
-        this.yWidth = yWidth;
+    public void setY(int y) {
+        this.y = y;
     }
 
     public Level(ArrayList<ArrayList<Tile>> levelMap) {
@@ -86,13 +85,13 @@ public class Level implements Serializable {
         boxes = new ArrayList<>();
 
         // setting the level's dimensions
-        xLenght = levelMap.size();
-        yWidth = levelMap.get(0).size();
+        x = levelMap.size();
+        y = levelMap.get(0).size();
 
         // iterates through the level's map and extracts the player's location and targets
         for (ArrayList<Tile> row : levelMap) {
-            if (row.size() > yWidth)
-                yWidth = row.size();
+            if (row.size() > y)
+                y = row.size();
             for (Tile tile : row) {
                 if (tile.toString().equals("o"))
                     targets.add(tile); // adding the tile to the targets array

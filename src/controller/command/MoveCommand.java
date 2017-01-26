@@ -55,6 +55,8 @@ public class MoveCommand implements Command {
 
     @Override
     public void setParams(LinkedList<String> params) throws IOException {
+        if (params.size()==0)
+            throw new IOException("Please provide a direction");
         setDirection(params.getFirst());
     }
 

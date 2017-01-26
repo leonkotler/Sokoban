@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Observable;
 
 
-public class MyModel extends Observable implements Model {
+public class SokobanModel extends Observable implements Model {
 
     Level currentLevel;
     Policy policy;

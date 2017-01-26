@@ -1,6 +1,7 @@
 package controller.server;
 
 import java.io.*;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -34,17 +35,26 @@ public class Cli extends Observable implements ClientHandler {
         writer.flush();
         help(outToClient);
 
-        while (!scanner.hasNext(exitStr)) {
-            // splitting user input on spaces
-            userInput = scanner.nextLine();
-            // sending the user's input to the controller
+        try {
+            while (!scanner.hasNext(exitStr)) {
+                // splitting user input on spaces
+                userInput = scanner.nextLine();
+                // sending the user's input to the controller
+                setChanged();
+                notifyObservers(userInput);
+            }
+            writer.println("bye");
+            writer.flush();
             setChanged();
-            notifyObservers(userInput);
+            notifyObservers(scanner.nextLine());
+
+        } catch (NoSuchElementException e){
+            // catches CTRL+C from the client
+            writer.println("bye");
+            writer.flush();
+            setChanged();
+            notifyObservers("exit");
         }
-        writer.println("bye");
-        writer.flush();
-        setChanged();
-        notifyObservers(scanner.nextLine());
     }
 
     public void help(OutputStream outToClient) {

@@ -6,5 +6,5 @@ public interface View {
     void display();
     Displayer getDisplayer();
     void passException(Exception e);
-    void passPassmessage(String message);
+    void passMessage(String message);
 }

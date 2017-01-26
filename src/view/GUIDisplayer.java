@@ -17,20 +17,9 @@ import java.util.ArrayList;
 public class GUIDisplayer extends Canvas implements Displayer {
 
     protected Model model;
-    private StringProperty wallImg;
-    private StringProperty boxImg;
-    private StringProperty tileImg;
-    private StringProperty targetImg;
-    private StringProperty playerImg;
-
-
 
     public GUIDisplayer() {
-        wallImg=new SimpleStringProperty();
-        boxImg=new SimpleStringProperty();
-        tileImg=new SimpleStringProperty();
-        targetImg=new SimpleStringProperty();
-        playerImg=new SimpleStringProperty();
+
     }
 
     @Override
@@ -40,20 +29,21 @@ public class GUIDisplayer extends Canvas implements Displayer {
             double W = getWidth();
             double H = getHeight();
 
-            double w = W / model.getCurrentLvl().getxLenght();
-            double h = H / model.getCurrentLvl().getyWidth();
+            double w = W / model.getCurrentLvl().getX();
+            double h = H / model.getCurrentLvl().getY();
 
-            Image wall = new Image(new FileInputStream(wallImg.get()));
-            Image box = new Image(new FileInputStream(boxImg.get()));
-            Image target = new Image(new FileInputStream(targetImg.get()));
-            Image player = new Image(new FileInputStream(playerImg.get()));
-            Image tile = new Image(new FileInputStream(tileImg.get()));
+
+            Image wall = new Image(getClass().getResourceAsStream("/images/wall.jpg"));
+            Image box = new Image(getClass().getResourceAsStream("/images/crate.jpg"));
+            Image target = new Image(getClass().getResourceAsStream("/images/target.jpg"));
+            Image player = new Image(getClass().getResourceAsStream("/images/player.jpg"));
+            Image tile = new Image(getClass().getResourceAsStream("/images/tile.jpg"));
 
             GraphicsContext gc = getGraphicsContext2D();
             gc.clearRect(0, 0, W, H);
 
-            for (int i = 0; i < model.getCurrentLvl().getxLenght(); i++)
-                for (int j = 0; j < model.getCurrentLvl().getyWidth(); j++) {
+            for (int i = 0; i < model.getCurrentLvl().getX(); i++)
+                for (int j = 0; j < model.getCurrentLvl().getY(); j++) {
                     gc.drawImage(tile, j * w, i * h, w, h);
                 }
 
@@ -82,63 +72,4 @@ public class GUIDisplayer extends Canvas implements Displayer {
         this.model = model;
     }
 
-    public String getWallImg() {
-        return wallImg.get();
-    }
-
-    public StringProperty wallImgProperty() {
-        return wallImg;
-    }
-
-    public void setWallImg(String wallImg) {
-        this.wallImg.set(wallImg);
-    }
-
-    public String getBoxImg() {
-        return boxImg.get();
-    }
-
-    public StringProperty boxImgProperty() {
-        return boxImg;
-    }
-
-    public void setBoxImg(String boxImg) {
-        this.boxImg.set(boxImg);
-    }
-
-    public String getTileImg() {
-        return tileImg.get();
-    }
-
-    public StringProperty tileImgProperty() {
-        return tileImg;
-    }
-
-    public void setTileImg(String tileImg) {
-        this.tileImg.set(tileImg);
-    }
-
-    public String getPlayerImg() {
-        return playerImg.get();
-    }
-
-    public StringProperty playerImgProperty() {
-        return playerImg;
-    }
-
-    public void setPlayerImg(String playerImg) {
-        this.playerImg.set(playerImg);
-    }
-
-    public String getTargetImg() {
-        return targetImg.get();
-    }
-
-    public StringProperty targetImgProperty() {
-        return targetImg;
-    }
-
-    public void setTargetImg(String targetImg) {
-        this.targetImg.set(targetImg);
-    }
 }

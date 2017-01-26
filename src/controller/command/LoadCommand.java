@@ -49,6 +49,8 @@ public class LoadCommand extends IOcommand{
 
     @Override
     public void setParams(LinkedList<String> params) throws FileNotFoundException {
+        if (params.size()==0)
+            throw new FileNotFoundException("Please provide a file path");
         setFilePath(params.getFirst());
     }
 }

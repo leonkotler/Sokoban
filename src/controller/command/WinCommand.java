@@ -26,10 +26,10 @@ public class WinCommand implements Command {
     public void execute() throws IOException {
         if (server != null) {
             PrintWriter errorWriter = new PrintWriter(server.getClientHandler().getOutToClient());
-            errorWriter.println("Congratulations! You've won!\nIt took you " + steps + " stepsLoad a new level to continue playing");
+            errorWriter.println("Congratulations! You've won!\nIt took you " + steps + " steps\nLoad a new level to continue playing");
             errorWriter.flush();
         } else
-            view.passPassmessage("Congratulations! You've won!\nIt took you " + steps + " steps\nLoad a new level to continue playing");
+            view.passMessage("Congratulations! You've won!\nIt took you " + steps + " steps\nLoad a new level to continue playing");
 
     }
 
