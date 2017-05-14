@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PlayerScoreBoardController">
+   <children>
+      <TableView fx:id="playerTable" layoutX="191.0" layoutY="110.0" prefHeight="400.0" prefWidth="401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="100" text="Name" />
+            <TableColumn fx:id="levelColumn" prefWidth="100" text="Level" />
+            <TableColumn fx:id="stepsColumn" prefWidth="100" text="Steps" />
+            <TableColumn fx:id="timeColumn" prefWidth="100" text="Time" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

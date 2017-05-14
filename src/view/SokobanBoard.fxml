@@ -13,16 +13,15 @@
         <RowConstraints/>
     </rowConstraints>
     <children>
-        <BorderPane prefHeight="459.0" prefWidth="613.0">
+        <BorderPane prefHeight="500.0" prefWidth="650.0">
             <center>
-                <GUIDisplayer fx:id="displayer" width="400.0" height="360.0" BorderPane.alignment="CENTER"/>
-
-
+                <GUIDisplayer fx:id="displayer" width="450.0" height="400.0" BorderPane.alignment="CENTER"/>
             </center>
             <left>
                 <VBox alignment="CENTER" prefHeight="459.0" prefWidth="159.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#openFile" prefHeight="25.0"
+                        <Label fx:id="levelLabel"></Label>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#openFile" prefHeight="20.0"
                                 prefWidth="106.0" text="Load">
                             <VBox.margin>
                                 <Insets bottom="20.0" top="20.0"/>
@@ -34,7 +33,7 @@
                                 <Font size="14.0"/>
                             </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#saveFile" prefHeight="25.0"
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#saveFile" prefHeight="20.0"
                                 prefWidth="101.0" text="Save">
                             <VBox.margin>
                                 <Insets bottom="20.0" top="20.0"/>
@@ -46,7 +45,7 @@
                                 <Font size="14.0"/>
                             </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="25.0"
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="20.0"
                                 prefWidth="106.0" text="Exit">
                             <VBox.margin>
                                 <Insets bottom="20.0" top="20.0"/>
@@ -58,7 +57,7 @@
                                 <Font size="14.0"/>
                             </font>
                         </Button>
-                        <Button alignment="CENTER" onAction="#solve" mnemonicParsing="false" prefHeight="25.0"
+                        <Button alignment="CENTER" onAction="#solve" mnemonicParsing="false" prefHeight="20.0"
                                 prefWidth="101.0" text="Solve">
                             <VBox.margin>
                                 <Insets bottom="20.0" top="20.0"/>
@@ -70,7 +69,19 @@
                                 <Font size="14.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#playPause" prefHeight="25.0" prefWidth="101.0"
+                        <Button mnemonicParsing="false" onAction="#openScores" prefHeight="20.0" prefWidth="101.0" alignment="CENTER"
+                                text="Scores">
+                            <VBox.margin>
+                                <Insets bottom="20.0" top="20.0"/>
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="20.0" top="20.0"/>
+                            </padding>
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#playPause" prefHeight="20.0" prefWidth="101.0"
                                 text="Mute / Play"/>
                     </children>
                 </VBox>

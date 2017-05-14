@@ -34,12 +34,13 @@ public class SokobanModel extends Observable implements Model {
     public void move(Direction direction) {
         if (!currentLevel.isWon()) {
             policy.checkPolicy(direction);
+            currentLevel.setStepCounter(currentLevel.getStepCounter()+1);
             setChanged();
             notifyObservers("display");
 
             if (currentLevel.isWon()) {
                 setChanged();
-                notifyObservers("win " + currentLevel.getStepCounter());
+                notifyObservers("win " + currentLevel.getStepCounter()+" "+currentLevel.getTimePassed());
             }
         }
 

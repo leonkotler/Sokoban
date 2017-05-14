@@ -2,21 +2,31 @@ package view;
 
 import controller.displayer.Displayer;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import utils.hibernate.HibernateUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SokobanGUIController extends Observable implements View, Initializable {
@@ -25,6 +35,9 @@ public class SokobanGUIController extends Observable implements View, Initializa
     GUIDisplayer displayer;
     @FXML
     Label steps;
+    @FXML
+    Label levelLabel;
+    String currentLevel;
 
     private Media media = new Media(getClass().getResource("/music/zizibum.mp3").toExternalForm());
     private MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -79,6 +92,7 @@ public class SokobanGUIController extends Observable implements View, Initializa
     }
 
     public void exit() {
+        HibernateUtil.getSessionFactory().close();
         Platform.exit();
         setChanged();
         notifyObservers("exit");
@@ -148,16 +162,26 @@ public class SokobanGUIController extends Observable implements View, Initializa
     }
 
     @Override
-    public void passMessage(String message) {
+    public void setCurrentLevel(String levelName) {
+        this.currentLevel=levelName;
+        Platform.runLater(() -> levelLabel.setText("You are playing: "+levelName));
+    }
+
+    @Override
+    public void winMessage(String message) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Victory!");
-                alert.setHeaderText("Hurray!");
-                alert.setContentText(message);
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Good Job!");
+                dialog.setHeaderText(message);
+                dialog.setContentText("Please enter your name:");
+                Optional<String> result = dialog.showAndWait();
 
-                alert.showAndWait();
+                if (result.isPresent()){
+                    setChanged();
+                    notifyObservers("saveScore "+result.get());
+                }
             }
         });
 
@@ -168,5 +192,29 @@ public class SokobanGUIController extends Observable implements View, Initializa
             mediaPlayer.pause();
         else mediaPlayer.play();
         displayer.requestFocus();
+    }
+
+    public void openScores(ActionEvent event) {
+        if (currentLevel==null){
+            passException(new IOException("Please load a level first"));
+            return;
+        }
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/view/ScoreBoard.fxml"));
+        try {
+            Parent root1 =fxmlLoader.load();
+            MainScoreBoardController controller = fxmlLoader.getController();
+            controller.setLevelName(currentLevel);
+            controller.initSearch();
+
+            Stage stage = new Stage();
+
+            stage.setTitle("Scoreboard for level "+currentLevel);
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (IOException e) {
+            passException(e);
+        }
+
     }
 }

@@ -18,6 +18,8 @@
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
         </element>
+        <element id="library" level="project" name="Hibernate 5.2.9-5.2.9" />
+        <element id="library" level="project" name="mysql-connector-java-5.1" />
       </element>
     </root>
   </artifact>

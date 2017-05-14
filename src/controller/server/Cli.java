@@ -43,17 +43,13 @@ public class Cli extends Observable implements ClientHandler {
                 setChanged();
                 notifyObservers(userInput);
             }
+            // disconnecting the client
             writer.println("bye");
             writer.flush();
-            setChanged();
-            notifyObservers(scanner.nextLine());
 
         } catch (NoSuchElementException e){
-            // catches CTRL+C from the client
-            writer.println("bye");
-            writer.flush();
-            setChanged();
-            notifyObservers("exit");
+            // catching sudden disconnection
+            System.out.println("Connection closed");
         }
     }
 

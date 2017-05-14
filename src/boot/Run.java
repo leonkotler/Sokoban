@@ -30,7 +30,7 @@ public class Run extends Application {
         controller.start();
 
         primaryStage.setTitle("Sokoban");
-        primaryStage.setScene(new Scene(root, 613, 462));
+        primaryStage.setScene(new Scene(root, 700, 600));
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> view.exit());
     }

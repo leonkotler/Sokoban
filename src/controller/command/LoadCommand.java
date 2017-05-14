@@ -3,15 +3,20 @@ package controller.command;
 
 import model.Model;
 import utils.FilePathUtil;
+import view.View;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 /* LoadCommand loads a file (supports different extensions) and stores is within itself. The level is accessible through getLoadedLevel() */
 public class LoadCommand extends IOcommand{
     Model model;
+    View view;
 
     public Model getModel() {
         return model;
@@ -25,8 +30,9 @@ public class LoadCommand extends IOcommand{
        super(filePath);
        this.model=model;
     }
-    public LoadCommand(Model model) throws IOException {
+    public LoadCommand(Model model,View view) throws IOException {
         this.model=model;
+        this.view=view;
     }
     public LoadCommand() {
     }
@@ -42,6 +48,17 @@ public class LoadCommand extends IOcommand{
         else
             try {
                 model.setCurrentLvl(loaderExtensions.get(ext).loadLevel(new FileInputStream(filePath)));
+                if (model.getCurrentLvl().getLevelName()==null){
+
+                    Path p = Paths.get(filePath);
+                    String fileName = p.getFileName().toString();
+
+                    if (fileName.indexOf(".") > 0) {
+                        fileName = fileName.substring(0, fileName.lastIndexOf("."));
+                    }
+                    model.getCurrentLvl().setLevelName(fileName);
+                    view.setCurrentLevel(fileName);
+                }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

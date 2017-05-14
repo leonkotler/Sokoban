@@ -13,6 +13,7 @@ public class WinCommand implements Command {
     MyServer server;
     View view;
     String steps;
+    String timePassed;
 
     public WinCommand(MyServer server) {
         this.server = server;
@@ -26,15 +27,16 @@ public class WinCommand implements Command {
     public void execute() throws IOException {
         if (server != null) {
             PrintWriter errorWriter = new PrintWriter(server.getClientHandler().getOutToClient());
-            errorWriter.println("Congratulations! You've won!\nIt took you " + steps + " steps\nLoad a new level to continue playing");
+            errorWriter.println("Congratulations! You've won!\nIt took you " + steps + " steps and " + timePassed + "\nWould you like to enter you results to the score board?");
             errorWriter.flush();
-        } else
-            view.passMessage("Congratulations! You've won!\nIt took you " + steps + " steps\nLoad a new level to continue playing");
-
+        } else {
+            view.winMessage("Congratulations! You've won!\nIt took you " + steps + " steps and " + timePassed + "\nWould you like to enter you results to the score board?");
+        }
     }
 
     @Override
     public void setParams(LinkedList<String> params) throws IOException {
-        steps = params.getFirst();
+        steps = params.removeFirst();
+        timePassed = params.removeFirst();
     }
 }

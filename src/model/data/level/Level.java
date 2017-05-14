@@ -2,6 +2,7 @@ package model.data.level;
 
 import model.data.level_item.Item;
 import model.data.level_item.Tile;
+import utils.hibernate.StopWatch;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +16,24 @@ public class Level implements Serializable {
     protected int x;                         // level dimensions
     protected int y;
     protected int stepCounter=0;
+    StopWatch stopWatch;
+    String levelName;
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
+
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
 
     public int getStepCounter() {
         return stepCounter;
@@ -51,6 +70,7 @@ public class Level implements Serializable {
     public Level(ArrayList<ArrayList<Tile>> levelMap) {
         this.levelMap = levelMap;
         initData();
+        startStopWatch();
     }
 
     public Level() {
@@ -109,7 +129,6 @@ public class Level implements Serializable {
                 .setContains(levelMap.get(from.getX()).get(from.getY()).getContains());
         // setting the from tile to contain nothing
         levelMap.get(from.getX()).get(from.getY()).freeTile();
-        stepCounter++;
     }
 
     public boolean isWon() {
@@ -123,5 +142,15 @@ public class Level implements Serializable {
             } else win = false;
         }
         return win;
+    }
+
+    private void startStopWatch(){
+        stopWatch=new StopWatch();
+        stopWatch.start();
+    }
+
+    public String getTimePassed(){
+        stopWatch.stop();
+        return stopWatch.getElapsedTime();
     }
 }

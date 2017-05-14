@@ -95,11 +95,12 @@ public class SokobanController extends BlockingQueueController {
 
     private void initCommands() throws IOException {
         commands = new HashMap<>();
-        commands.put("load", new LoadCommand(this.model));
+        commands.put("load", new LoadCommand(this.model,this.view));
         commands.put("save", new SaveCommand(this.model));
         commands.put("move", new MoveCommand(this.model));
         commands.put("exit", new ExitCommand(this));
         commands.put("win", new WinCommand(this.view));
+        commands.put("saveScore",new SaveScoreCommand(this.model,this.view));
 
         if (this.server != null) {
             commands.put("display", new DisplayCommand(this.model, new CLIDisplayer(this.server)));

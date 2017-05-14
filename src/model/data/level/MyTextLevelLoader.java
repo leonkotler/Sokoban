@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /* MyTextLevelLoader will return a level from a file input stream */
@@ -15,6 +17,7 @@ public class MyTextLevelLoader implements LevelLoader {
     public Level loadLevel(InputStream stream) throws IOException{
 
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(stream));
+
         ArrayList<ArrayList<Tile>> levelMap = new ArrayList<>();
         levelMap.add(new ArrayList<Tile>());
 
@@ -56,7 +59,7 @@ public class MyTextLevelLoader implements LevelLoader {
             }
 
         // creating and returning our new level with the map we've received
-        return  new Level(levelMap);
+        return new Level(levelMap);
     }
 }
 
